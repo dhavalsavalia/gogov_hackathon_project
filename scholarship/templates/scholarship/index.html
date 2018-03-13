@@ -1,0 +1,8 @@
+<form action="" method="get">
+	{{ filter.form.as_p }}
+	<input type="submit" />
+</form>
+<h1>List of all available scholorships</h1>
+{% for obj in filter.qs %}
+	{{ obj.name }}<br />
+{% endfor %}

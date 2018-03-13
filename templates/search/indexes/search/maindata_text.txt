@@ -1,0 +1,6 @@
+{{ object.text }}
+{{ object.title }}
+{{ object.meta_keywords }}
+{{ object.metadata }}
+{{ object.context }}
+{{ object.url }}

@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>GoGov</title>
+<link href="https://fonts.googleapis.com/css?family=Capriola" rel="stylesheet">
+<style>
+*{font-family: 'Capriola', sans-serif;}
+body,html{margin:0;padding:0;}
+footer{position:fixed;bottom:0;width:100%;padding:5px;text-align:center;font-size:10px;font-weight:100; 
+background:#f3f3f3;border-top:#f5f5f5;
+}
+input[type="search"]{
+width:65%;
+border-radius:3px;
+border:0;
+box-shadow: 0 0px 1px 0px rgba(0,0,0,0.16);
+background-image:url('https://i.imgur.com/NJgWYWT.png');
+background-repeat:no-repeat;
+background-size:30px;
+    background-position: 7px;
+padding:10px 40px;
+}
+
+input:focus{outline:none}
+.aftersearch input[type="submit"]{
+    margin:0px 15px;}
+input[type="submit"]{
+border:1px solid #f2f2f2;
+margin:20px 0px;
+    padding:10px 20px;
+    background-color: #f2f2f2;
+    border:0px;
+    color:#fff;
+    border-radius: 2px;
+    color: #757575;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+h1{    color: #23A6D5;
+    margin-bottom: 30px;
+}
+.aftersearch{
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.aftersearch *{float:left;padding:0px 10px;margin:0;}
+.aftersearch h1{font-size: 27px;}
+.result{clear:left;padding:5px 33px;color:#ccc;padding:10px 90px;}
+
+ul{list-style:none;padding:0}
+a{color: #23A6D5;text-decoration:none}
+ul li{margin-top:20px;}
+footer, footer a{color:#b1acac;}
+
+input[type="submit"]:hover{background:#23A6D5;color:#fff;}
+
+
+.container{width:1000px;margin:auto;padding-bottom:30px;}
+.nothing{text-align:center  }
+</style>
+</head>
+<body>
+<div class="main">
+<div class="container">
+<form class="aftersearch" method="get" action=".">
+<h1><a href="/">GoGov</a></h1>
+<input type="search" name="q" id="id_q" placeholder="Search...">
+<input type="submit" name="submit" id="submit" value="search">
+<div class="clearfix"></div>
+</form>
+
+{% if query %}
+<div class="result">
+
+{% if page.object_list|length > 0 %}
+<span>{{ page.object_list|length }} Result(s)  Found....</span>
+{{ prepared_data }}
+{% endif %}
+
+{% for result in page.object_list %}
+<ul style="">
+<li><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></li>
+</ul>
+{% empty %}
+<div class="nothing nothing-found">
+<img src="https://i.imgur.com/hFlsIfJ.png" width=200 style="opacity:0.1">
+<br>
+<span>Nothing Found !</span>
+</div>
+{% endfor %}
+</div>
+{% else %}
+<div class="nothing">
+<img src="https://i.imgur.com/hFlsIfJ.png" width=200 style="opacity:0.1">
+<br>
+<span>You need to enter something to search...</span>
+</div>
+{% endif %} 
+</div>
+</div>
+
+<footer>
+<pre><p>&copy; GoGov 2018   |   <a href="/about">About</a>    |   <a href="/privacy">Privacy</a></p></pre>
+</footer>
+
+</body>
+</html>
+
+
+
